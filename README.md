@@ -1,4 +1,3 @@
-# JUSTLEX-EMOTION-AI
 # ⚖️ JustLex Emotion AI: Advanced Forensic Suite
 ### *The Intersection of Behavioral Science and Judicial Integrity*
 
