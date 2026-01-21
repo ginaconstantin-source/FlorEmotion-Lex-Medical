@@ -20,6 +20,7 @@
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: var(--bg-deep); color: var(--text-silver); }
 
+        /* HEADER */
         header {
             background-color: var(--bg-deep);
             padding: 15px 5%;
@@ -33,77 +34,79 @@
         .logo-text h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.3rem; letter-spacing: 2px; }
         nav a { color: var(--text-silver); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* WORKSTATION LAYOUT */
+        /* WORKSTATION */
         .main-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
-        
-        .acquisition-panel { background: var(--panel-bg); padding: 20px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.2); }
-        .video-box { width: 100%; height: 500px; background: #000; border-radius: 4px; position: relative; border: 1px solid var(--gold); overflow: hidden; }
+        .acquisition-panel { background: var(--panel-bg); padding: 25px; border-radius: 8px; border-left: 4px solid var(--gold); }
+        .video-box { width: 100%; height: 500px; background: #000; border-radius: 4px; position: relative; border: 1px solid var(--gold); overflow: hidden; display: flex; align-items: center; justify-content: center; }
         video, canvas, #image-preview { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         
+        .gavel-icon { font-size: 5rem; color: var(--gold); opacity: 0.6; z-index: 5; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
         .verdict-panel { background: #111827; padding: 30px; border-radius: 8px; border: 1px solid var(--gold); box-shadow: 0 0 30px rgba(0,0,0,0.5); }
         .emo-title { font-size: 2.2rem; color: var(--gold); text-align: center; font-weight: bold; font-family: 'Cinzel', serif; margin: 15px 0; }
         
-        /* BARE EMOȚII */
         .bar-item { margin-bottom: 12px; }
         .bar-label { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 4px; }
         .bar-outer { background: rgba(255,255,255,0.05); height: 8px; border-radius: 4px; overflow: hidden; }
         .bar-inner { height: 100%; width: 0%; background: var(--gold); transition: width 0.4s ease; }
 
-        /* MEDICI */
+        /* EXPERTI & SERVICII */
         .section-title { text-align: center; font-family: 'Cinzel', serif; color: var(--gold); font-size: 2.2rem; margin: 60px 0 30px; }
-        .medici-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5%; }
-        .medic-card { background: var(--panel-bg); padding: 25px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.1); text-align: center; }
+        .medici-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 0 5%; }
+        .medic-card { background: var(--panel-bg); padding: 30px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.1); text-align: center; }
         .medic-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* FORMULAR PROGRAMARE & TRIMITERE */
-        .form-section { padding: 60px 5%; }
-        .form-container { max-width: 900px; margin: 0 auto; background: var(--panel-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.8rem; }
-        input, select, textarea { width: 100%; padding: 12px; background: #050505; border: 1px solid #334155; color: white; border-radius: 4px; }
-        
-        .btn { background: var(--gold); color: black; padding: 15px; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: 10px; }
-        .btn-secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        /* ONORARIU SI CONTACT (STRICT CONFORM IMAGINII) */
+        .bottom-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 60px 5%; max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--gold); }
+        .onorariu-card { border: 1px solid #334155; padding: 40px; border-radius: 12px; }
+        .price-tag { font-size: 3.5rem; color: var(--gold); font-weight: 300; margin: 20px 0; display: block; }
 
-        @media print { .no-print { display: none !important; } body { background: white; color: black; } .verdict-panel { border: 2px solid black; width: 100%; } }
+        /* FORMULAR (STIL ORL) */
+        .form-section { padding: 40px 5%; background: #0a0a0b; }
+        .form-container { max-width: 800px; margin: 0 auto; background: var(--panel-bg); padding: 35px; border: 1px solid var(--gold); border-radius: 8px; }
+        .form-group { margin-bottom: 20px; }
+        label { color: var(--gold); font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 8px; }
+        input, select, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #334155; color: white; border-radius: 4px; }
+        
+        .btn { background: var(--gold); color: black; padding: 15px; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; }
+
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body>
 
 <header class="no-print">
     <div class="logo-area">
-        <svg width="40" height="40" viewBox="0 0 100 100"><path d="M50 5 L10 25 V50 C10 75 50 95 50 95 C50 95 90 75 90 50 V25 L50 5Z" fill="none" stroke="#c5a059" stroke-width="3"/></svg>
         <div class="logo-text"><h1>FLOREMOTION <span>LEX MEDICAL</span></h1></div>
     </div>
-    <nav><a href="#analiza">Analiză</a><a href="#echipa">Echipa</a><a href="#contact">Contact</a></nav>
+    <nav>
+        <a href="#analiza">Analiză</a>
+        <a href="#echipa">Medici</a>
+        <a href="#onorariu">Onorariu</a>
+        <a href="#contact">Programare</a>
+    </nav>
 </header>
 
 <main id="analiza" class="main-grid no-print">
     <section class="acquisition-panel">
-        <h3 style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--gold); margin-bottom: 15px;">Sistem de Achiziție Date</h3>
+        <h3 style="font-family: 'Cinzel'; color: var(--gold);">Sistem de Detecție Neuronală (Live)</h3>
         <div class="video-box">
-            <div id="loader" style="position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:100; display:flex; align-items:center; justify-content:center; flex-direction:column;">
-                <i class="fas fa-microchip fa-spin fa-3x" style="color:var(--gold)"></i>
-                <p style="margin-top:20px; color:var(--gold)">INIȚIALIZARE PROTOCOL...</p>
-            </div>
+            <i class="fas fa-gavel gavel-icon" id="gavel-symbol"></i>
             <video id="webcam" autoplay muted playsinline></video>
             <img id="image-preview" style="display:none;">
             <canvas id="overlay"></canvas>
         </div>
-        <p style="font-size: 0.6rem; margin-top: 10px; opacity: 0.6;">* Detecție activă pe 68 de puncte biometrice.</p>
     </section>
 
     <section class="verdict-panel">
-        <div class="verdict-header" style="text-align: center;">
-            <h3 style="font-family: 'Cinzel'; font-size: 0.9rem;">Verdict Emoțional Neuronal</h3>
-            <div id="main-emo" class="emo-title">STANDBY</div>
-        </div>
+        <h3 style="font-family: 'Cinzel'; text-align: center;">Verdict Emoțional</h3>
+        <div id="main-emo" class="emo-title">STANDBY</div>
         <div id="bars-root"></div>
-        
         <div class="action-zone" style="margin-top: 30px;">
             <button class="btn" onclick="document.getElementById('file-in').click()">Încarcă Probă (FOTO)</button>
             <input type="file" id="file-in" style="display:none" accept="image/*" onchange="handleFile(this)">
-            <button class="btn btn-secondary" onclick="window.print()">Generează Raport Judiciar</button>
+            <button class="btn" style="background:transparent; color:var(--gold); border:1px solid var(--gold); margin-top:10px;" onclick="window.print()">Generează Raport Judiciar</button>
         </div>
     </section>
 </main>
@@ -111,65 +114,79 @@
 <h2 class="section-title" id="echipa">Consiliul de Experți Medicali</h2>
 <div class="medici-grid">
     <div class="medic-card">
-        <i class="fas fa-user-tie"></i>
+        <i class="fas fa-user-md"></i>
         <h3>Dr. Constantin Gina Florentina</h3>
-        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Primar - Expert Coordonator</p>
+        <p style="color: var(--gold); font-weight: bold;">Medic Primar - Coordonator</p>
+        <p>Expertize biometrice | Limbi: RO, ES, EN</p>
     </div>
     <div class="medic-card">
         <i class="fas fa-brain"></i>
-        <h3>Dr. Elena Popescu</h3>
-        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Neurolog - Specialist Neuro-Forensic</p>
-        <small>Analiza integrității neurologice în detecția emoțiilor.</small>
+        <h3>Dr. Elena Vance</h3>
+        <p style="color: var(--gold); font-weight: bold;">Medic Neurolog - Specialist Neuro-Forensic</p>
+        <p>Analiza reacțiilor afective involuntare.</p>
     </div>
     <div class="medic-card">
         <i class="fas fa-notes-medical"></i>
         <h3>Dr. Marius Ionescu</h3>
-        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Neurolog - Expert Examinator</p>
-        <small>Specialist în răspunsuri vegetative și micro-expresii.</small>
+        <p style="color: var(--gold); font-weight: bold;">Medic Neurolog - Expert Examinator</p>
+        <p>Specialist în micro-expresii vegetative.</p>
     </div>
     <div class="medic-card">
-        <i class="fas fa-balance-scale"></i>
-        <h3>Dr. Adrian Vasilescu</h3>
-        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Primar Legist</p>
+        <i class="fas fa-gavel"></i>
+        <h3>Dr. Nicolae Pleșan</h3>
+        <p style="color: var(--gold); font-weight: bold;">Medic Primar Legist</p>
+        <p>Traumatologie și Validare AI.</p>
     </div>
 </div>
 
-<section id="contact" class="form-section no-print">
+<section id="onorariu" class="bottom-info-grid">
+    <div class="onorariu-card">
+        <h3 style="font-family: 'Cinzel'; color: var(--gold);">ONORARIU EXPERTIZĂ</h3>
+        <span class="price-tag">2000 LEI</span>
+        <p>Raport tehnic completizat cu date biometrice.</p>
+    </div>
+    <div class="contact-details" id="contact">
+        <h3 style="font-family: 'Cinzel'; color: var(--gold);">CONTACT & PROGRAMĂRI</h3>
+        <p><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Vâlcea, Roșiile, str. Zgubea nr. 1</p>
+        <p><i class="fas fa-phone" style="color:var(--gold)"></i> 0750 234 888</p>
+        <p><i class="fas fa-envelope" style="color:var(--gold)"></i> cgflorentina@gmail.com</p>
+    </div>
+</section>
+
+<section class="form-section no-print">
     <div class="form-container">
-        <div>
-            <h3 style="font-family: 'Cinzel'; color: var(--gold);">Programare Online</h3>
-            <div class="form-group">
-                <label>Nume Complet</label>
-                <input type="text" placeholder="Ex: Popescu Ion">
+        <h3 style="font-family: 'Cinzel'; color: var(--gold); text-align: center; margin-bottom: 25px;">Programează o Expertiză / Trimite Raport</h3>
+        <form id="programare-form">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Nume Complet</label>
+                    <input type="text" placeholder="Numele subiectului" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" placeholder="Ex: 0722..." required>
+                </div>
             </div>
             <div class="form-group">
-                <label>Telefon</label>
-                <input type="tel" placeholder="07xx xxx xxx">
-            </div>
-            <div class="form-group">
-                <label>Medic Solicitat</label>
-                <select id="medic-destinatar">
+                <label>Medic Destinatar</label>
+                <select id="medic-select">
                     <option>Dr. Constantin Gina Florentina</option>
-                    <option>Dr. Elena Popescu (Neurologie)</option>
+                    <option>Dr. Elena Vance (Neurologie)</option>
                     <option>Dr. Marius Ionescu (Neurologie)</option>
-                    <option>Dr. Adrian Vasilescu (Legist)</option>
+                    <option>Dr. Nicolae Pleșan (Legist)</option>
                 </select>
             </div>
-        </div>
-        <div>
-            <h3 style="font-family: 'Cinzel'; color: var(--gold);">Detalii Caz</h3>
             <div class="form-group">
-                <label>Observații Clinice / Motivul Expertizei</label>
-                <textarea rows="6" placeholder="Descrieți contextul..."></textarea>
+                <label>Observații / Motivul Expertizei</label>
+                <textarea rows="4" placeholder="Simptome sau context juridic..."></textarea>
             </div>
-            <button class="btn" onclick="alert('Solicitarea a fost trimisă către medicul selectat.')">Trimite spre Analiză</button>
-        </div>
+            <button type="button" class="btn" onclick="alert('Cazul a fost trimis către medicul selectat!')">Trimite Cererea</button>
+        </form>
     </div>
 </section>
 
 <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.7rem;">
-    <p>Roșiile, str. Zgubea nr. 1, Vâlcea | Telefon: 0750 234 888 | Email: cgflorentina@gmail.com</p>
-    <p>© 2026 FLOREMOTION LEX MEDICAL | Toate drepturile rezervate.</p>
+    © 2026 FLOREMOTION LEX MEDICAL | SISTEM DE EXPERTIZĂ PROTEJAT
 </footer>
 
 <script>
@@ -178,7 +195,7 @@
     const imgPrev = document.getElementById('image-preview');
     const mainEmo = document.getElementById('main-emo');
     const barsRoot = document.getElementById('bars-root');
-    const loader = document.getElementById('loader');
+    const gavel = document.getElementById('gavel-symbol');
 
     const emoNames = { happy: "Bucurie", sad: "Tristețe", angry: "Furie", fearful: "Frică", disgusted: "Dezgust", surprised: "Surpriză", neutral: "Neutru" };
 
@@ -187,7 +204,7 @@
         await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
         await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
         await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
-        loader.style.display = 'none';
+        document.getElementById('loader').style.display = 'none';
         startWebcam();
     }
 
@@ -195,6 +212,7 @@
         navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
             video.srcObject = stream;
             video.onloadedmetadata = () => {
+                gavel.style.display = 'none';
                 const size = { width: video.offsetWidth, height: video.offsetHeight };
                 faceapi.matchDimensions(canvas, size);
                 setInterval(async () => {
@@ -213,9 +231,8 @@
             reader.onload = async (e) => {
                 imgPrev.src = e.target.result; imgPrev.style.display = 'block'; video.style.display = 'none';
                 const img = await faceapi.fetchImage(e.target.result);
-                const size = { width: video.offsetWidth, height: video.offsetHeight };
                 const detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
-                updateUI(detections, size);
+                updateUI(detections, { width: video.offsetWidth, height: video.offsetHeight });
             };
             reader.readAsDataURL(input.files[0]);
         }
@@ -238,5 +255,6 @@
     }
     initAI();
 </script>
+
 </body>
 </html>
