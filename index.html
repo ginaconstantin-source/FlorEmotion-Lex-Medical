@@ -11,248 +11,165 @@
 
     <style>
         :root {
-            --bg-deep: #0a0a0b;
-            --panel-bg: #141417;
+            --bg-deep: #050505;
+            --panel-bg: #0f172a;
             --gold: #c5a059;
-            --gold-glow: rgba(197, 160, 89, 0.3);
             --text-silver: #e2e8f0;
-            --judicial-blue: #1a1c23;
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            background-color: var(--bg-deep); 
-            color: var(--text-silver);
-            overflow-x: hidden;
-        }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: var(--bg-deep); color: var(--text-silver); }
 
-        /* HEADER & LOGO INTEGRAT */
         header {
-            background-color: rgba(10, 10, 11, 0.95);
-            padding: 10px 5%;
+            background-color: var(--bg-deep);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--gold);
             position: sticky; top: 0; z-index: 1000;
         }
-
         .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-text h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.3rem; letter-spacing: 2px; }
+        nav a { color: var(--text-silver); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+
+        /* WORKSTATION LAYOUT */
+        .main-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
         
-        /* Logo SVG - Balanță & Scut integrat */
-        .svg-logo { width: 60px; height: 60px; filter: drop-shadow(0 0 5px var(--gold)); }
-
-        .brand-text h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.2rem; letter-spacing: 2px; }
-        .brand-text p { font-size: 0.6rem; margin: 0; text-transform: uppercase; opacity: 0.7; }
-
-        nav a { color: var(--text-silver); text-decoration: none; margin-left: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-        nav a:hover { color: var(--gold); }
-
-        /* MAIN LAYOUT - Stil interfață imagine */
-        .main-workstation {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 30px;
-            padding: 40px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ZONA LIVE - Vizibilitate Balanță/Linii */
-        .live-section {
-            background: var(--panel-bg);
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            position: relative;
-        }
-
-        .video-container {
-            width: 100%;
-            height: 500px;
-            background: #000;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--gold);
-        }
-
-        video, canvas, #image-preview { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
-        }
-
-        .scan-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border: 20px solid transparent;
-            border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 20 V0 H20" fill="none" stroke="%23c5a059" stroke-width="2"/><path d="M80 0 H100 V20" fill="none" stroke="%23c5a059" stroke-width="2"/><path d="M100 80 V100 H80" fill="none" stroke="%23c5a059" stroke-width="2"/><path d="M20 100 H0 V80" fill="none" stroke="%23c5a059" stroke-width="2"/></svg>') 20;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        /* VERDICT EMOȚIONAL - Stil din imagine */
-        .verdict-panel {
-            background: var(--judicial-blue);
-            border-radius: 8px;
-            padding: 30px;
-            border: 1px solid var(--gold);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        .verdict-header { text-align: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; }
-        .verdict-header h2 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; }
+        .acquisition-panel { background: var(--panel-bg); padding: 20px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.2); }
+        .video-box { width: 100%; height: 500px; background: #000; border-radius: 4px; position: relative; border: 1px solid var(--gold); overflow: hidden; }
+        video, canvas, #image-preview { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
         
-        .status-display { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 25px 0; }
-        .emoji-circle { font-size: 3rem; background: rgba(255,255,255,0.05); width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--gold); }
-        .current-label { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+        .verdict-panel { background: #111827; padding: 30px; border-radius: 8px; border: 1px solid var(--gold); box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .emo-title { font-size: 2.2rem; color: var(--gold); text-align: center; font-weight: bold; font-family: 'Cinzel', serif; margin: 15px 0; }
+        
+        /* BARE EMOȚII */
+        .bar-item { margin-bottom: 12px; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 4px; }
+        .bar-outer { background: rgba(255,255,255,0.05); height: 8px; border-radius: 4px; overflow: hidden; }
+        .bar-inner { height: 100%; width: 0%; background: var(--gold); transition: width 0.4s ease; }
 
-        /* BARE PROGRES */
-        .bar-item { margin-bottom: 15px; }
-        .bar-label { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 5px; text-transform: uppercase; }
-        .bar-outer { background: rgba(255,255,255,0.05); height: 8px; border-radius: 4px; }
-        .bar-inner { height: 100%; width: 0%; background: var(--gold); transition: width 0.4s ease; box-shadow: 0 0 10px var(--gold); }
+        /* MEDICI */
+        .section-title { text-align: center; font-family: 'Cinzel', serif; color: var(--gold); font-size: 2.2rem; margin: 60px 0 30px; }
+        .medici-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5%; }
+        .medic-card { background: var(--panel-bg); padding: 25px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.1); text-align: center; }
+        .medic-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
 
-        /* BUTOANE ACȚIUNE */
-        .action-group { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-        .btn {
-            padding: 15px;
-            border: none;
-            cursor: pointer;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
-            transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .btn-upload { background: var(--gold); color: #000; }
-        .btn-report { background: #000; color: var(--gold); border: 1px solid var(--gold); font-size: 1rem; }
-        .btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        /* FORMULAR PROGRAMARE & TRIMITERE */
+        .form-section { padding: 60px 5%; }
+        .form-container { max-width: 900px; margin: 0 auto; background: var(--panel-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.8rem; }
+        input, select, textarea { width: 100%; padding: 12px; background: #050505; border: 1px solid #334155; color: white; border-radius: 4px; }
+        
+        .btn { background: var(--gold); color: black; padding: 15px; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: 10px; }
+        .btn-secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
 
-        /* TITLURI SECȚIUNI */
-        .section-title { font-family: 'Cinzel', serif; color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin: 40px 0 20px; }
-
-        /* REȚEA MEDICI & INFO */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 50px; }
-        .info-card { background: var(--panel-bg); padding: 25px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .info-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-
-        /* FOOTER INFO */
-        .footer-details { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid var(--gold); padding-top: 40px; margin-top: 60px; }
-
-        @media print { .no-print { display: none; } body { background: #fff; color: #000; } .verdict-panel { border: 2px solid #000; } }
+        @media print { .no-print { display: none !important; } body { background: white; color: black; } .verdict-panel { border: 2px solid black; width: 100%; } }
     </style>
 </head>
 <body>
 
 <header class="no-print">
     <div class="logo-area">
-        <svg class="svg-logo" viewBox="0 0 100 100">
-            <path d="M50 5 L10 25 V50 C10 75 50 95 50 95 C50 95 90 75 90 50 V25 L50 5Z" fill="none" stroke="#c5a059" stroke-width="3"/>
-            <line x1="30" y1="40" x2="70" y2="40" stroke="#c5a059" stroke-width="2"/>
-            <circle cx="50" cy="40" r="3" fill="#c5a059"/>
-            <path d="M35 40 Q35 60 50 60 Q65 60 65 40" fill="none" stroke="#c5a059" stroke-width="2"/>
-            <path d="M45 70 L55 80 M55 70 L45 80" stroke="#c5a059" stroke-width="3"/>
-        </svg>
-        <div class="brand-text">
-            <h1>FLOREMOTION <span>LEX MEDICAL</span></h1>
-            <p>Expertiză Medico-Legală Neuronală</p>
-        </div>
+        <svg width="40" height="40" viewBox="0 0 100 100"><path d="M50 5 L10 25 V50 C10 75 50 95 50 95 C50 95 90 75 90 50 V25 L50 5Z" fill="none" stroke="#c5a059" stroke-width="3"/></svg>
+        <div class="logo-text"><h1>FLOREMOTION <span>LEX MEDICAL</span></h1></div>
     </div>
-    <nav>
-        <a href="#analiza">Analiză Forensic</a>
-        <a href="#echipa">Echipa Medicală</a>
-        <a href="#preturi">Onorariu</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <nav><a href="#analiza">Analiză</a><a href="#echipa">Echipa</a><a href="#contact">Contact</a></nav>
 </header>
 
-<main class="main-workstation">
-    <section id="analiza" class="live-section">
-        <h2 class="section-title">Sistem de Detecție Neuronală (Live)</h2>
-        <div class="video-container">
+<main id="analiza" class="main-grid no-print">
+    <section class="acquisition-panel">
+        <h3 style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--gold); margin-bottom: 15px;">Sistem de Achiziție Date</h3>
+        <div class="video-box">
             <div id="loader" style="position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:100; display:flex; align-items:center; justify-content:center; flex-direction:column;">
-                <i class="fas fa-gavel fa-spin fa-3x" style="color:var(--gold)"></i>
-                <p style="margin-top:20px; color:var(--gold)">INIȚIALIZARE PROTOCOL FORENSIC...</p>
+                <i class="fas fa-microchip fa-spin fa-3x" style="color:var(--gold)"></i>
+                <p style="margin-top:20px; color:var(--gold)">INIȚIALIZARE PROTOCOL...</p>
             </div>
             <video id="webcam" autoplay muted playsinline></video>
             <img id="image-preview" style="display:none;">
             <canvas id="overlay"></canvas>
-            <div class="scan-overlay"></div>
         </div>
-        <p style="font-size: 0.7rem; margin-top: 15px; opacity: 0.6;">
-            <i class="fas fa-info-circle"></i> Analiză bazată pe 68 de puncte biometrice de reper faciale.
-        </p>
+        <p style="font-size: 0.6rem; margin-top: 10px; opacity: 0.6;">* Detecție activă pe 68 de puncte biometrice.</p>
     </section>
 
     <section class="verdict-panel">
-        <div class="verdict-header">
-            <h2>Verdict Emoțional</h2>
+        <div class="verdict-header" style="text-align: center;">
+            <h3 style="font-family: 'Cinzel'; font-size: 0.9rem;">Verdict Emoțional Neuronal</h3>
+            <div id="main-emo" class="emo-title">STANDBY</div>
         </div>
-
-        <div class="status-display">
-            <div class="emoji-circle" id="emoji-big">🎭</div>
-            <div class="current-label" id="main-emo">STANDBY</div>
-        </div>
-
-        <div id="bars-root">
-            </div>
-
-        <div class="action-group no-print">
-            <button class="btn btn-upload" onclick="document.getElementById('file-in').click()">
-                <i class="fas fa-upload"></i> ÎNCARCĂ PROBĂ (FOTO)
-            </button>
+        <div id="bars-root"></div>
+        
+        <div class="action-zone" style="margin-top: 30px;">
+            <button class="btn" onclick="document.getElementById('file-in').click()">Încarcă Probă (FOTO)</button>
             <input type="file" id="file-in" style="display:none" accept="image/*" onchange="handleFile(this)">
-            
-            <button class="btn btn-report" onclick="window.print()">
-                <i class="fas fa-file-pdf"></i> GENEREAZĂ RAPORT JUDICIAR
-            </button>
+            <button class="btn btn-secondary" onclick="window.print()">Generează Raport Judiciar</button>
         </div>
     </section>
 </main>
 
-<section style="padding: 0 5%;">
-    <h2 class="section-title" id="echipa">Corpul Experților FlorEmotion</h2>
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fas fa-user-tie"></i>
-            <h3>Dr. Constantin Gina Florentina</h3>
-            <p>Medic Primar - Expert Coordonator</p>
-            <small>15+ ani experiență | Limbi: RO, ES, TR</small>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-balance-scale"></i>
-            <h3>Dr. Adrian Vasilescu</h3>
-            <p>Medic Primar Legist</p>
-            <small>Expertiză Traumatologie și Validare AI</small>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-brain"></i>
-            <h3>Dr. Simona Ardelean</h3>
-            <p>Psihiatru Judiciar</p>
-            <small>Analiză Comportament Simulat</small>
-        </div>
+<h2 class="section-title" id="echipa">Consiliul de Experți Medicali</h2>
+<div class="medici-grid">
+    <div class="medic-card">
+        <i class="fas fa-user-tie"></i>
+        <h3>Dr. Constantin Gina Florentina</h3>
+        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Primar - Expert Coordonator</p>
     </div>
+    <div class="medic-card">
+        <i class="fas fa-brain"></i>
+        <h3>Dr. Elena Popescu</h3>
+        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Neurolog - Specialist Neuro-Forensic</p>
+        <small>Analiza integrității neurologice în detecția emoțiilor.</small>
+    </div>
+    <div class="medic-card">
+        <i class="fas fa-notes-medical"></i>
+        <h3>Dr. Marius Ionescu</h3>
+        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Neurolog - Expert Examinator</p>
+        <small>Specialist în răspunsuri vegetative și micro-expresii.</small>
+    </div>
+    <div class="medic-card">
+        <i class="fas fa-balance-scale"></i>
+        <h3>Dr. Adrian Vasilescu</h3>
+        <p style="color: var(--gold); font-size: 0.8rem; font-weight: bold;">Medic Primar Legist</p>
+    </div>
+</div>
 
-    <div class="footer-details" id="contact">
+<section id="contact" class="form-section no-print">
+    <div class="form-container">
         <div>
-            <h3 class="section-title" id="preturi" style="margin-top:0;">Onorariu Expertiză</h3>
-            <div style="background: var(--panel-bg); padding: 30px; border: 1px solid var(--gold); border-radius: 8px;">
-                <span style="font-size: 3rem; color: var(--gold); font-weight: bold;">2000 LEI</span>
-                <p>Raport tehnic completizat cu date biometrice.</p>
+            <h3 style="font-family: 'Cinzel'; color: var(--gold);">Programare Online</h3>
+            <div class="form-group">
+                <label>Nume Complet</label>
+                <input type="text" placeholder="Ex: Popescu Ion">
+            </div>
+            <div class="form-group">
+                <label>Telefon</label>
+                <input type="tel" placeholder="07xx xxx xxx">
+            </div>
+            <div class="form-group">
+                <label>Medic Solicitat</label>
+                <select id="medic-destinatar">
+                    <option>Dr. Constantin Gina Florentina</option>
+                    <option>Dr. Elena Popescu (Neurologie)</option>
+                    <option>Dr. Marius Ionescu (Neurologie)</option>
+                    <option>Dr. Adrian Vasilescu (Legist)</option>
+                </select>
             </div>
         </div>
         <div>
-            <h3 class="section-title" style="margin-top:0;">Contact & Programări</h3>
-            <p><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Vâlcea, Roșiile, str. Zgubea nr. 1</p>
-            <p><i class="fas fa-phone" style="color:var(--gold)"></i> 0750 234 888</p>
-            <p><i class="fas fa-envelope" style="color:var(--gold)"></i> cgflorentina@gmail.com</p>
+            <h3 style="font-family: 'Cinzel'; color: var(--gold);">Detalii Caz</h3>
+            <div class="form-group">
+                <label>Observații Clinice / Motivul Expertizei</label>
+                <textarea rows="6" placeholder="Descrieți contextul..."></textarea>
+            </div>
+            <button class="btn" onclick="alert('Solicitarea a fost trimisă către medicul selectat.')">Trimite spre Analiză</button>
         </div>
     </div>
 </section>
 
 <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.7rem;">
-    © 2026 FLOREMOTION LEX MEDICAL | SISTEM DE EXPERTIZĂ NEURONALĂ PROTEJAT
+    <p>Roșiile, str. Zgubea nr. 1, Vâlcea | Telefon: 0750 234 888 | Email: cgflorentina@gmail.com</p>
+    <p>© 2026 FLOREMOTION LEX MEDICAL | Toate drepturile rezervate.</p>
 </footer>
 
 <script>
@@ -263,18 +180,13 @@
     const barsRoot = document.getElementById('bars-root');
     const loader = document.getElementById('loader');
 
-    const emoNames = { 
-        happy: "Bucurie", sad: "Tristețe", angry: "Furie", 
-        fearful: "Frică", disgusted: "Dezgust", surprised: "Surpriză", neutral: "Neutru" 
-    };
+    const emoNames = { happy: "Bucurie", sad: "Tristețe", angry: "Furie", fearful: "Frică", disgusted: "Dezgust", surprised: "Surpriză", neutral: "Neutru" };
 
     async function initAI() {
-        // Modelele se încarcă de pe un CDN stabil
         const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/model/';
         await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
         await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
         await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
-        
         loader.style.display = 'none';
         startWebcam();
     }
@@ -287,8 +199,7 @@
                 faceapi.matchDimensions(canvas, size);
                 setInterval(async () => {
                     if(imgPrev.style.display === 'none') {
-                        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-                            .withFaceLandmarks().withFaceExpressions();
+                        const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
                         updateUI(detections, size);
                     }
                 }, 200);
@@ -300,14 +211,10 @@
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = async (e) => {
-                imgPrev.src = e.target.result;
-                imgPrev.style.display = 'block';
-                video.style.display = 'none';
-                
+                imgPrev.src = e.target.result; imgPrev.style.display = 'block'; video.style.display = 'none';
                 const img = await faceapi.fetchImage(e.target.result);
                 const size = { width: video.offsetWidth, height: video.offsetHeight };
-                const detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions())
-                    .withFaceLandmarks().withFaceExpressions();
+                const detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
                 updateUI(detections, size);
             };
             reader.readAsDataURL(input.files[0]);
@@ -316,30 +223,19 @@
 
     function updateUI(detections, size) {
         const resized = faceapi.resizeResults(detections, size);
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0,0,canvas.width, canvas.height);
-        
-        // Desenăm punctele faciale pentru efect medical/forensic
+        canvas.getContext('2d').clearRect(0,0,canvas.width, canvas.height);
         if(detections.length > 0) {
             faceapi.draw.drawFaceLandmarks(canvas, resized);
-            
-            const expressions = detections[0].expressions;
-            const top = Object.entries(expressions).sort((a,b) => b[1]-a[1])[0];
+            const exp = detections[0].expressions;
+            const top = Object.entries(exp).sort((a,b) => b[1]-a[1])[0];
             mainEmo.innerText = emoNames[top[0]].toUpperCase();
-            
             barsRoot.innerHTML = '';
-            Object.entries(expressions).sort((a,b) => b[1]-a[1]).forEach(([key, val]) => {
+            Object.entries(exp).sort((a,b) => b[1]-a[1]).forEach(([key, val]) => {
                 const pct = (val * 100).toFixed(1);
-                barsRoot.innerHTML += `
-                    <div class="bar-item">
-                        <div class="bar-label"><span>${emoNames[key]}</span><span>${pct}%</span></div>
-                        <div class="bar-outer"><div class="bar-inner" style="width:${pct}%"></div></div>
-                    </div>
-                `;
+                barsRoot.innerHTML += `<div class="bar-item"><div class="bar-label"><span>${emoNames[key]}</span><span>${pct}%</span></div><div class="bar-outer"><div class="bar-inner" style="width:${pct}%"></div></div></div>`;
             });
         }
     }
-
     initAI();
 </script>
 </body>
