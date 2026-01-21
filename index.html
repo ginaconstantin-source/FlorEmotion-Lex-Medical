@@ -20,20 +20,26 @@
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: var(--justitie-negru); color: var(--text-silver); }
 
+        /* HEADER CU SIGLĂ */
         header {
             background-color: var(--justitie-negru);
-            padding: 15px 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--justitie-auriu);
             position: sticky; top: 0; z-index: 1000;
         }
-        .logo h1 { font-family: 'Cinzel', serif; color: var(--justitie-auriu); margin: 0; font-size: 1.5rem; letter-spacing: 2px; }
-        .main-nav a { color: var(--text-silver); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 60px; width: auto; }
+        .logo-text h1 { font-family: 'Cinzel', serif; color: var(--justitie-auriu); margin: 0; font-size: 1.3rem; letter-spacing: 1px; }
 
+        .main-nav a { color: var(--text-silver); text-decoration: none; margin-left: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .main-nav a:hover { color: var(--justitie-auriu); }
+
+        /* HERO */
         .hero {
-            padding: 120px 5%;
+            padding: 100px 5%;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200');
             background-size: cover;
@@ -41,6 +47,7 @@
         .hero h2 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--justitie-auriu); }
         .btn { background: var(--justitie-auriu); color: #000; padding: 15px 35px; border: none; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 25px; text-transform: uppercase; }
 
+        /* ANALIZA JURIDICĂ */
         .workstation { display: grid; grid-template-columns: 1fr 420px; gap: 30px; padding: 60px 5%; max-width: 1400px; margin: 0 auto; }
         .video-container { background: #000; height: 500px; border-radius: 4px; position: relative; border: 1px solid var(--justitie-albastru); overflow: hidden; }
         video, canvas, #image-preview { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -55,14 +62,17 @@
         .section-header { text-align: center; padding: 60px 5% 20px; }
         .section-header h2 { font-family: 'Cinzel', serif; color: var(--justitie-auriu); font-size: 2.2rem; }
         
+        /* GRID LAYOUTS */
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 5% 60px; }
         .info-card { background: var(--justitie-albastru); padding: 30px; border: 1px solid rgba(197, 160, 89, 0.1); text-align: center; }
         .info-card i { font-size: 3rem; color: var(--justitie-auriu); margin-bottom: 20px; }
         .info-card h3 { font-family: 'Cinzel', serif; color: #fff; margin-bottom: 10px; }
 
+        /* ONORARIU */
         .price-box { border: 3px double var(--justitie-auriu); padding: 50px; text-align: center; max-width: 800px; margin: 40px auto; background: var(--justitie-albastru); }
         .price-tag { font-size: 3.5rem; color: var(--justitie-auriu); font-weight: bold; margin: 20px 0; }
 
+        /* CONTACT */
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding: 60px 5%; }
         form input, form select, form textarea { width: 100%; padding: 15px; background: #000; border: 1px solid var(--justitie-auriu); color: #fff; margin-bottom: 15px; }
 
@@ -72,7 +82,12 @@
 <body>
 
 <header class="no-print">
-    <div class="logo"><h1>FLOREMOTION <span>LEX MEDICAL</span></h1></div>
+    <div class="logo-container">
+        <img src="logo.png" alt="Sigla FlorEmotion Lex" class="logo-img">
+        <div class="logo-text">
+            <h1>FLOREMOTION <span>LEX MEDICAL</span></h1>
+        </div>
+    </div>
     <nav class="main-nav">
         <a href="#acasa">Acasă</a>
         <a href="#analiza">Analiză</a>
@@ -93,8 +108,6 @@
     <h2>Stație de Expertiză Judiciară (Cele 7 Emoții)</h2>
     <p>Sistem neuronal de înaltă precizie bazat pe 68 de puncte biometrice faciale</p>
 </div>
-
-
 
 <div class="workstation">
     <div class="video-container">
@@ -149,7 +162,7 @@
 <section id="contact" class="contact-wrapper no-print">
     <div>
         <h3>Contact Cabinet</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Județul Vâlcea, Râmnicu Vâlcea, Strada Zgubea nr. 1</p>
+        <p><i class="fas fa-map-marker-alt"></i> Județul Vâlcea, Roșiile, str. Zgubea nr. 1</p>
         <p><i class="fas fa-phone"></i> 0750234888</p>
         <p><i class="fas fa-envelope"></i> office@floremotion-lex.ro | cgflorentina@gmail.com</p>
     </div>
